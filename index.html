@@ -9,12 +9,12 @@
   <body>
     <header>
       <nav>
-        
+        <h1>Fema</h1>
       </nav>
     </header>
     <!-- forms for user login and access -->
     <section class="user-access">
-      <section class="login">
+      <section class="login" id="individual-login">
         <h3 class="access-heading">Login as individual</h3>
         <form class="login-form">
           <input type="text" name="email" id="email" placeholder="Please enter email">
@@ -22,7 +22,7 @@
           <button>Login</button>
         </form>
       </section>
-      <section class="register">
+      <section class="register" id="individual-reg">
         <h3 class="access-heading">Register as individual</h3>
         <form class="reg-form">
           <input type="text" name="name" id="name" placeholder="Please enter ful name">
@@ -35,7 +35,7 @@
 
     <!-- forms for facility login and register -->
     <section class="facility-access">
-      <section class="login">
+      <section class="login" id="org-login">
         <h3 class="access-heading">Login as an organisation</h3>
         <form class="login-form">
           <input type="text" name="email" id="email" placeholder="Please enter email">
@@ -43,7 +43,7 @@
           <button>Login</button>
         </form>
       </section>
-      <section class="register">
+      <section class="register" id="org-reg">
         <h3 class="access-heading">Register as organisation</h3>
         <form class="reg-form">
           <input type="text" name="facName" id="name" placeholder="Name of organisation/company">
