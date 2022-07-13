@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <section>
+        <div class="contentBox">
+            <div class="formBox">
+                <h2>Register</h2>
+                <form action="/users/login" method="POST">
+                    <div class="inputBx">
+                        <span>Username</span> <input type="text" name="name" id="name" required>
+                    </div>
+                    <div class="inputBx">
+                        <span> Password</span> <input type="password" name="password" id="password" required>
+                    </div>
+                    <div class="inputBx">
+                        <span> Confirm password</span> <input type="password" name="password2" id="password2" required>
+                    </div>
+                    <div class="remeber">
+                        <label><input type="checkbox" name="" id=""> Remember me</label>
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" value="Register">
+                    </div>
+                    <p>Already registered? Login here? <a href="/users/login"></a></p>
+                </form>
+
+            </div>
+
+        </div>
+       
+    </section>
+</body>
+</html>
