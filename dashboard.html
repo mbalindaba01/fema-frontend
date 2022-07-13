@@ -6,9 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
+    <link rel="stylesheet" href="style3.css">
 </head>
 <body>
-        <a href="/users/logout">Logout</a>
-    <h1>Hello <%= user %></h1>
+        
+    <section>        
+        <h1>Hello <%= user %></h1>      
+        <div class="content">
+            <h2>Women <br><span>health</span> </h2>
+            <h3>Select the service you would like</h3> 
+            <div class="holder">  
+                <div class="wrapper">
+                    <h4 class="title icon">Contriceptive</h4>
+                    <ul class="dropdown">
+                        <li class="icon">Oral contraceptive</li>
+                        <li class="icon">IUDs</li>
+                        <li class="icon">Implants</li>
+                        <li class="icon">Injections</li>
+                        <li class="icon">Patches</li>
+                        <li class="icon">Rings</li>
+                    </ul>
+                </div>              
+                <div class="wrapper">
+                    <h4 class="title icon">Pregnancy termination</h4>
+                </div>
+            </div>
+
+            <h3>Enter location</h3> 
+
+            <div class="holder">
+                <div class="wrapper">
+                    <h4>
+                        <span>Location</span> <input type="text" name="name" id="name" required>
+
+                    </h4>
+
+                </div>
+                
+            </div>
+            
+
+
+            <br>
+            <br>
+            <br>
+            
+            <div class="info">
+                <a href="/users/logout">Logout</a>  
+            </div>  
+        </div>
+    </section>
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+        wrapper.addEventListener('click',(ev)=>{
+            let el = ev.target.parentElement;
+            if(el == wrapper || el.parentElement == wrapper){
+                wrapper.classList.toggle("active");
+
+            }
+        })
+
+    </script>
 </body>
 </html>
