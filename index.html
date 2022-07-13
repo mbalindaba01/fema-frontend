@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        
+      </nav>
+    </header>
+    <!-- forms for user login and access -->
+    <section class="user-access">
+      <section class="login">
+        <h3 class="access-heading">Login as individual</h3>
+        <form class="login-form">
+          <input type="text" name="email" id="email" placeholder="Please enter email">
+          <input type="password" name="password" id="password" placeholder="Please enter password">
+          <button>Login</button>
+        </form>
+      </section>
+      <section class="register">
+        <h3 class="access-heading">Register as individual</h3>
+        <form class="reg-form">
+          <input type="text" name="name" id="name" placeholder="Please enter ful name">
+          <input type="text" name="email" id="email" placeholder="Please enter email">
+          <input type="password" name="password" id="password" placeholder="Please enter password">
+          <button type="button">Register</button>
+        </form>
+      </section>
+    </section>
+
+    <!-- forms for facility login and register -->
+    <section class="facility-access">
+      <section class="login">
+        <h3 class="access-heading">Login as an organisation</h3>
+        <form class="login-form">
+          <input type="text" name="email" id="email" placeholder="Please enter email">
+          <input type="password" name="password" id="password" placeholder="Please enter password">
+          <button>Login</button>
+        </form>
+      </section>
+      <section class="register">
+        <h3 class="access-heading">Register as organisation</h3>
+        <form class="reg-form">
+          <input type="text" name="facName" id="name" placeholder="Name of organisation/company">
+          <input type="text" name="facEmail" id="email" placeholder="Email">
+          <input type="text" name="contactno" id="contactno" placeholder="Contact number">
+          <input type="text" name="location" id="location" placeholder="Location">
+          <input type="text" name="reg" id="reg" placeholder="Organisation registration code">
+          <input type="text" name="capacity" id="capacity" placeholder="Number of people you are able to see in a day">
+          <input type="password" name="password" id="password" placeholder="Please enter password">
+          <select name="services" id="services">
+            <option value="Pregnancy termination"></option>
+            <option value="Contraception"></option>
+            <option value="Ante-natal Care"></option>
+          </select>
+          <button type="button">Register</button>
+        </form>
+      </section>
+    </section>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
