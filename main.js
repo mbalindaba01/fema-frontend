@@ -20,7 +20,7 @@ Alpine.data("users", () => {
 		facilityLoggedIn: true,
 		facilitySignedUp: true,
 		home: false,
-    showFacSec: true,
+		showFacSec: true,
 		user: {
 			loginPassword: "",
 			loginEmail: "",
