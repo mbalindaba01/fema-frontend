@@ -8,32 +8,98 @@
   box-sizing: border-box;
 }
 
-/* body {
-  background: #FEEFDD;
-  height: 100vh;
-  width: 100vw;
+body {
+  font-family: 'Karla', sans-serif;
+  padding: 20px;
+}
+
+header {
+  height: 10vh;
+  width: 100;
+  display: flex;
+  align-items: center;
+  font-family: 'Lobster', sans-serif;
+}
+
+div.logo {
+  font-size: 1.5em;
+}
+
+.err{
+  color: orangered;
+}
+
+.users {
+  display: none;
+}
+
+.user-screen {
+  background: #f6f6f4;
+  height: 100%;
+  border-radius: 5px;
+  min-height: 80vh;
+}
+
+section.welcome {
+  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  padding: 0 10px;
 }
 
-.user-access {
-  background: green;
-  height: 80vh;
-  width: 95vw;
+section.bookings {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  flex-wrap: wrap;
 }
 
-#individual-login {
-  background: red;
-  height: 100%;
-  width: 100%;                                                                  
+div.booking {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  height: 110px;
+  width: 200px;
+  margin: 0 10px;
 }
 
-#individual-reg, #org-login, #org-reg {
-  display: none
-} */
+div.name-and-address {
+  border-left: 3px solid green;
+  padding-left: 5px;
+}
+
+h3.facility-name {
+  font-size: 1em;
+}
+
+p.address {
+  font-size: 0.8em;
+}
+
+h5.date {
+  font-size: 0.8em;
+}
+
+p.date {
+  font-size: 0.8em;
+}
+
+div.date-and-time {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 30px 0px 10px;
+}
+
+div.booking-status {
+  width: 70px;
+  display: flex;
+  padding: 5px;
+  background: orange;
+  border-radius: 10px;
+  font-size: 0.8em;
+  margin-left: 10px;
+  justify-content: space-between;
+}
+
+
+
+
