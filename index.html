@@ -13,7 +13,7 @@
 		</header>
 		<!-- forms for user login and access -->
 		<div x-data="users">
-			<section class="user-access">
+			<section class="user-access" x-show="showUserSec">
 				<section class="login" x-show="loggedIn">
 					<h3 class="access-heading">Login as individual</h3>
 					<div class="err" x-text="loginAuthError"></div>
@@ -54,28 +54,31 @@
 							x-model="user.password"
 							placeholder="Please enter password"
 						/>
-						<button @click="register">Register</button>
+						<button @click="register()">Register</button>
 					</form>
 				</section>
 				<p>
 					Login Or Register A Facility
-					<a href="#" @click="showFacSec=!showFacSec">Here</a>
+					<a href="#" @click="showFacSec=!showFacSec, showUserSec = false"
+						>Here</a
+					>
 				</p>
 			</section>
 
 			<!-- forms for facility login and register -->
 			<section class="facility-access" x-show="!showFacSec">
 				<section class="login" x-show="facilityLoggedIn">
+					<div class="err" x-text="logFacAuthError"></div>
 					<h3 class="access-heading">Login as an organisation</h3>
 					<form class="login-form">
 						<input
 							type="text"
-							x-model="facility.facEmail"
+							x-model="facility.logFacEmail"
 							placeholder="Please enter email"
 						/>
 						<input
 							type="password"
-							x-model="facility.facPassword"
+							x-model="facility.logFacPassword"
 							placeholder="Please enter password"
 						/>
 						<button @click="loginFacility()">Login</button>
@@ -88,6 +91,7 @@
 					</form>
 				</section>
 				<section class="register" x-show="!facilitySignedUp">
+					<div class="err" x-text="facAuthError"></div>
 					<h3 class="access-heading">Register as organisation</h3>
 					<form class="reg-form">
 						<input
@@ -97,7 +101,7 @@
 						/>
 						<input
 							type="text"
-							x-model="facility.regFacEmail"
+							x-model="facility.facEmail"
 							placeholder="Email"
 						/>
 						<input
@@ -126,17 +130,24 @@
 						/>
 						<input
 							type="password"
-							x-model="facility.regFacPassword"
+							x-model="facility.facPassword"
 							placeholder="Please enter password"
 						/>
-						<select name="services" id="services">
-							<option value="Pregnancy termination"></option>
-							<option value="Contraception"></option>
-							<option value="Ante-natal Care"></option>
+						<select x-model="chooseService" name="services" id="services">
+							<option disabled>Select Service Offered</option>
+							<option value="1">Pregnancy termination</option>
+							<option value="2">Contraception</option>
+							<option value="3">Ante-natal Care</option>
 						</select>
 						<button @click="registerFacility()">Register</button>
 					</form>
 				</section>
+				<p>
+					Login Or Register As individual
+					<a href="#" @click="showFacSec = true, showUserSec = true"
+						>Here</a
+					>
+				</p>
 			</section>
 		</div>
 		<script type="module" src="/main.js"></script>
