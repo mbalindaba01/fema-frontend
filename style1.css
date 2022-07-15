@@ -2,8 +2,6 @@
 
 
 body {
-    background-image: url('cont.png');
-    background-size: cover;
     font-family: 'Open Sans', sans-serif;
     /* text-align: center; */
     background-color: #faf4fa;
@@ -18,6 +16,8 @@ body {
 }
 
 section .contentBox{
+    background-image: url('cont.png');
+    background-size: cover;
     position: absolute;
     display: flex;
     justify-content: center;
