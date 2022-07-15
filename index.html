@@ -1,5 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite App</title>
+	</head>
+
+	<body>
+		<header>
+			<nav></nav>
+		</header>
+		<!-- forms for user login and access -->
+		<div x-data="users">
+			<section class="user-access" x-show="showUserSec">
+				<section class="login" x-show="loggedIn">
+					<h3 class="access-heading">Login as individual</h3>
+					<div class="err" x-text="loginAuthError"></div>
+					<form class="login-form">
+						<input
+							type="text"
+							x-model="user.loginEmail"
+							placeholder="Please enter email"
+						/>
+						<input
+							type="password"
+							x-model="user.loginPassword"
+							placeholder="Please enter password"
+						/>
+						<button @click="login()">Login</button>
+						<p>
+							Don't have an account?
+							<a href="#" @click="signedUp=!signedUp">Register</a>
+						</p>
+					</form>
+				</section>
+				<section class="register" x-show="!signedUp">
+					<h3 class="access-heading">Register as individual</h3>
+					<div class="err" x-text="signUpAuthError"></div>
+					<form class="reg-form">
+						<input
+							type="text"
+							x-model="user.name"
+							placeholder="Please enter full name"
+						/>
+						<input
+							type="text"
+							x-model="user.email"
+							placeholder="Please enter email"
+						/>
+						<input
+							type="password"
+							x-model="user.password"
+							placeholder="Please enter password"
+						/>
+						<button @click="register()">Register</button>
+					</form>
+				</section>
+				<p>
+					Login Or Register A Facility
+					<a href="#" @click="showFacSec=!showFacSec, showUserSec = false"
+						>Here</a
+					>
+				</p>
+			</section>
+=======
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -63,6 +128,91 @@
       </section>
     </section>
 
-    <script type="module" src="/main.js"></script>
-  </body>
+			<!-- forms for facility login and register -->
+			<section class="facility-access" x-show="!showFacSec">
+				<section class="login" x-show="facilityLoggedIn">
+					<div class="err" x-text="logFacAuthError"></div>
+					<h3 class="access-heading">Login as an organisation</h3>
+					<form class="login-form">
+						<input
+							type="text"
+							x-model="facility.logFacEmail"
+							placeholder="Please enter email"
+						/>
+						<input
+							type="password"
+							x-model="facility.logFacPassword"
+							placeholder="Please enter password"
+						/>
+						<button @click="loginFacility()">Login</button>
+						<p>
+							No Account?
+							<a href="#" @click="facilitySignedUp=!facilitySignedUp"
+								>Register</a
+							>
+						</p>
+					</form>
+				</section>
+				<section class="register" x-show="!facilitySignedUp">
+					<div class="err" x-text="facAuthError"></div>
+					<h3 class="access-heading">Register as organisation</h3>
+					<form class="reg-form">
+						<input
+							type="text"
+							x-model="facility.facName"
+							placeholder="Name of organisation/company"
+						/>
+						<input
+							type="text"
+							x-model="facility.facEmail"
+							placeholder="Email"
+						/>
+						<input
+							type="text"
+							x-model="facility.contactno"
+							id="contactno"
+							placeholder="Contact number"
+						/>
+						<input
+							type="text"
+							x-model="facility.location"
+							id="location"
+							placeholder="Location"
+						/>
+						<input
+							type="text"
+							x-model="facility.reg"
+							id="reg"
+							placeholder="Organisation registration code"
+						/>
+						<input
+							type="text"
+							x-model="facility.capacity"
+							id="capacity"
+							placeholder="Number of people you are able to see in a day"
+						/>
+						<input
+							type="password"
+							x-model="facility.facPassword"
+							placeholder="Please enter password"
+						/>
+						<select x-model="chooseService" name="services" id="services">
+							<option disabled>Select Service Offered</option>
+							<option value="1">Pregnancy termination</option>
+							<option value="2">Contraception</option>
+							<option value="3">Ante-natal Care</option>
+						</select>
+						<button @click="registerFacility()">Register</button>
+					</form>
+				</section>
+				<p>
+					Login Or Register As individual
+					<a href="#" @click="showFacSec = true, showUserSec = true"
+						>Here</a
+					>
+				</p>
+			</section>
+		</div>
+		<script type="module" src="/main.js"></script>
+	</body>
 </html>
