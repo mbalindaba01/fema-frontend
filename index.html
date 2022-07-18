@@ -15,7 +15,7 @@
 		<div x-data="users">
 			<section class="user-access" x-show="showUserSec">
 				<section class="login" x-show="loggedIn">
-					<h3 class="access-heading">Login as individual</h3>
+					<h3 class="access-heading">Login As Individual</h3>
 					<div class="err" x-text="loginAuthError"></div>
 					<form class="login-form">
 						<input
@@ -36,7 +36,7 @@
 					</form>
 				</section>
 				<section class="register" x-show="!signedUp">
-					<h3 class="access-heading">Register as individual</h3>
+					<h3 class="access-heading">Register As Individual</h3>
 					<div class="err" x-text="signUpAuthError"></div>
 					<form class="reg-form">
 						<input
@@ -59,7 +59,7 @@
 				</section>
 				<p>
 					Login Or Register A Facility
-					<a href="#" @click="showFacSec=!showFacSec, showUserSec = false"
+					<a href="#" @click="showFacSec=!showFacSec"
 						>Here</a
 					>
 				</p>
@@ -69,7 +69,7 @@
 			<section class="facility-access" x-show="!showFacSec">
 				<section class="login" x-show="facilityLoggedIn">
 					<div class="err" x-text="logFacAuthError"></div>
-					<h3 class="access-heading">Login as an organisation</h3>
+					<h3 class="access-heading">Login As An organisation</h3>
 					<form class="login-form">
 						<input
 							type="text"
@@ -92,7 +92,7 @@
 				</section>
 				<section class="register" x-show="!facilitySignedUp">
 					<div class="err" x-text="facAuthError"></div>
-					<h3 class="access-heading">Register as organisation</h3>
+					<h3 class="access-heading">Register An Organisation</h3>
 					<form class="reg-form">
 						<input
 							type="text"
@@ -133,21 +133,26 @@
 							x-model="facility.facPassword"
 							placeholder="Please enter password"
 						/>
-						<select x-model="chooseService" name="services" id="services">
-							<option disabled>Select Service Offered</option>
-							<option value="1">Pregnancy termination</option>
-							<option value="2">Contraception</option>
-							<option value="3">Ante-natal Care</option>
-						</select>
+						<p>Choose Service Offered</p>
+						<input type="checkbox" id="PregnancyTermination" x-model="PregnancyTermination" value="1">
+						<label for="chooseService"> Pregnancy termination</label>
+
+						<input type="checkbox" id="Contraception" x-model="Contraception" value="2">
+						<label for="chooseService"> Contraception</label>
+
+						<input type="checkbox" id="Ante-natalCare" x-model="Ante-natal Care" value="3">
+						<label for="chooseService"> Ante-natal Care</label>
+						<br>
+						<br>
 						<button @click="registerFacility()">Register</button>
 					</form>
 				</section>
-				<p>
+				<!-- <p>
 					Login Or Register As individual
 					<a href="#" @click="showFacSec = true, showUserSec = true"
 						>Here</a
 					>
-				</p>
+				</p> -->
 			</section>
 		</div>
 		<script type="module" src="/main.js"></script>

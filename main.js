@@ -40,7 +40,9 @@ Alpine.data("users", () => {
 			reg: "",
 			capacity: "",
 			facPassword: "",
-			chooseService: [],
+			pregnancyTermination : "",
+			contraception : "",
+			anteNatalCare : "",
 			logFacPassword: "",
 			logFacEmail: "",
 		},
@@ -135,7 +137,6 @@ Alpine.data("users", () => {
 					capacity: this.facility.capacity,
 					contact: this.facility.contactno,
 					facilityEmail: this.facility.facEmail,
-					serviceId: this.facility.chooseService,
 					facilityPass: this.facility.facPassword,
 				}),
 			})
