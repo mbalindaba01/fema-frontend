@@ -4,16 +4,25 @@
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 		<title>Vite App</title>
 	</head>
 
 	<body>
 		<header>
-			<nav></nav>
+			<nav>
+        <div class="logo">
+          <h1>Fema</h1>
+        </div>
+        <div class="nav-icons">
+          <i class="fa fa-lg fa-bell"></i>
+          <i class="fa fa-lg fa-sign-out"></i>
+        </div>
+      </nav>
 		</header>
 		<!-- forms for user login and access -->
-		<div x-data="users">
-			<section class="user-access" x-show="showUserSec">
+		<div x-data="users" class="users">
+			<section class="user-access">
 				<section class="login" x-show="loggedIn">
 					<h3 class="access-heading">Login As Individual</h3>
 					<div class="err" x-text="loginAuthError"></div>
@@ -54,7 +63,7 @@
 							x-model="user.password"
 							placeholder="Please enter password"
 						/>
-						<button @click="register()">Register</button>
+						<button @click="register">Register</button>
 					</form>
 				</section>
 				<p>
@@ -73,12 +82,12 @@
 					<form class="login-form">
 						<input
 							type="text"
-							x-model="facility.logFacEmail"
+							x-model="facility.facEmail"
 							placeholder="Please enter email"
 						/>
 						<input
 							type="password"
-							x-model="facility.logFacPassword"
+							x-model="facility.facPassword"
 							placeholder="Please enter password"
 						/>
 						<button @click="loginFacility()">Login</button>
@@ -101,7 +110,7 @@
 						/>
 						<input
 							type="text"
-							x-model="facility.facEmail"
+							x-model="facility.regFacEmail"
 							placeholder="Email"
 						/>
 						<input
@@ -130,7 +139,7 @@
 						/>
 						<input
 							type="password"
-							x-model="facility.facPassword"
+							x-model="facility.regFacPassword"
 							placeholder="Please enter password"
 						/>
 						<p>Choose Service Offered</p>
@@ -155,6 +164,236 @@
 				</p> -->
 			</section>
 		</div>
+
+
+    <!-- user screen on login -->
+    <div class="user-screen" x-data="services">
+      <div class="service-info">
+        <div class="landing">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+        </div>
+        <div class="services" x-init="loadServices()">
+          <template x-for="service in serviceList">
+            <div class="service">
+              <div class="heading">
+                <h3 x-text="service.name"></h3>
+              </div>
+              <div class="description">
+                <p x-text="service.description"></p>
+                <div class="button">
+                  <button x-bind:value="service.serv_config_id" @click="getFacilities($event);">Get facilities</button>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <button class="add-booking">+ Booking</button>
+        <section class="booking-header">
+          <p>Here are your upcoming bookings</p>
+          <hr>
+        </section>
+        <section class="bookings">
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+
+    <!-- facility-screen -->
+    <div class="facility-screen">
+      <div class="dashboard">
+        <div class="landing">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+        </div>
+        <hr class="facility-divider">
+        <div class="overview">
+          <div class="overview-content">
+            <div class="upcoming-week">
+              <h3 class="overview-heading">Upcoming week</h3>
+              <div class="text">
+                <p class="info one">You have four outstanding bookings. Please confirm or reject as soon as possible</p>
+                <p class="info two">Please keep the information about services offered updated</p>
+              </div>              
+            </div>
+            <div class="monthly-stats">
+              <h3 class="overview-heading">Service distribution</h3>
+              <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <button class="add-booking">Manage Bookings</button>
+        <section class="booking-header">
+          <p>These are your upcoming bookings</p>
+          <hr>
+        </section>
+        <section class="bookings">
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+              <div class="status-buttons">
+                <button class="confirm-booking">Confirm</button>
+                <button class="reject-booking">Reject</button>
+              </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="status-buttons">
+              <button class="confirm-booking">Confirm</button>
+              <button class="reject-booking">Reject</button>
+            </div>          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="status-buttons">
+              <button class="confirm-booking">Confirm</button>
+              <button class="reject-booking">Reject</button>
+            </div>          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="status-buttons">
+              <button class="confirm-booking">Confirm</button>
+              <button class="reject-booking">Reject</button>
+            </div>          </div>
+        </section>
+      </div>
+    </div>
+    <script src="./chart.js"></script>
 		<script type="module" src="/main.js"></script>
+    <script src="https://use.fontawesome.com/7e5be8745d.js"></script>
 	</body>
 </html>

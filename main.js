@@ -1,8 +1,10 @@
-import "./style.css";
-import Alpine from "alpinejs";
+import './style.css'
+import Alpine from 'alpinejs';
+import { Users } from './users';
+import { Services } from './services'
+
 window.Alpine = Alpine;
 
-// const URL_BASE = import.meta.env.VITE_SERVER_URL;
 
 Alpine.data("users", () => {
 	return {
