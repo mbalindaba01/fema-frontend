@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/assets/favicon.63a26457.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+		<title>Vite App</title>
+		<script type="module" crossorigin src="/assets/index.c23234b0.js"></script>
+		<link rel="stylesheet" href="/assets/index.1642b8ac.css">
+	</head>
+
+	<body>
+		<header>
+			<nav>
+        <div class="logo">
+          <h1>Fema</h1>
+        </div>
+        <div class="nav-icons">
+          <i class="fa fa-lg fa-bell"></i>
+          <i class="fa fa-lg fa-sign-out"></i>
+        </div>
+      </nav>
+		</header>
+		<!-- forms for user login and access -->
+		<div x-data="users" class="users">
+			<section class="user-access">
+				<section class="login" x-show="loggedIn">
+					<h3 class="access-heading">Login as individual</h3>
+					<div class="err" x-text="loginAuthError"></div>
+					<form class="login-form">
+						<input
+							type="text"
+							x-model="user.loginEmail"
+							placeholder="Please enter email"
+						/>
+						<input
+							type="password"
+							x-model="user.loginPassword"
+							placeholder="Please enter password"
+						/>
+						<button @click="login()">Login</button>
+						<p>
+							Don't have an account?
+							<a href="#" @click="signedUp=!signedUp">Register</a>
+						</p>
+					</form>
+				</section>
+				<section class="register" x-show="!signedUp">
+					<h3 class="access-heading">Register as individual</h3>
+					<div class="err" x-text="signUpAuthError"></div>
+					<form class="reg-form">
+						<input
+							type="text"
+							x-model="user.name"
+							placeholder="Please enter full name"
+						/>
+						<input
+							type="text"
+							x-model="user.email"
+							placeholder="Please enter email"
+						/>
+						<input
+							type="password"
+							x-model="user.password"
+							placeholder="Please enter password"
+						/>
+						<button @click="register">Register</button>
+					</form>
+				</section>
+				<p>
+					Login Or Register A Facility
+					<a href="#" @click="showFacSec=!showFacSec">Here</a>
+				</p>
+			</section>
+
+			<!-- forms for facility login and register -->
+			<section class="facility-access" x-show="!showFacSec">
+				<section class="login" x-show="facilityLoggedIn">
+					<h3 class="access-heading">Login as an organisation</h3>
+					<form class="login-form">
+						<input
+							type="text"
+							x-model="facility.facEmail"
+							placeholder="Please enter email"
+						/>
+						<input
+							type="password"
+							x-model="facility.facPassword"
+							placeholder="Please enter password"
+						/>
+						<button @click="loginFacility()">Login</button>
+						<p>
+							No Account?
+							<a href="#" @click="facilitySignedUp=!facilitySignedUp"
+								>Register</a
+							>
+						</p>
+					</form>
+				</section>
+				<section class="register" x-show="!facilitySignedUp">
+					<h3 class="access-heading">Register as organisation</h3>
+					<form class="reg-form">
+						<input
+							type="text"
+							x-model="facility.facName"
+							placeholder="Name of organisation/company"
+						/>
+						<input
+							type="text"
+							x-model="facility.regFacEmail"
+							placeholder="Email"
+						/>
+						<input
+							type="text"
+							x-model="facility.contactno"
+							id="contactno"
+							placeholder="Contact number"
+						/>
+						<input
+							type="text"
+							x-model="facility.location"
+							id="location"
+							placeholder="Location"
+						/>
+						<input
+							type="text"
+							x-model="facility.reg"
+							id="reg"
+							placeholder="Organisation registration code"
+						/>
+						<input
+							type="text"
+							x-model="facility.capacity"
+							id="capacity"
+							placeholder="Number of people you are able to see in a day"
+						/>
+						<input
+							type="password"
+							x-model="facility.regFacPassword"
+							placeholder="Please enter password"
+						/>
+						<select name="services" id="services">
+							<option value="Pregnancy termination"></option>
+							<option value="Contraception"></option>
+							<option value="Ante-natal Care"></option>
+						</select>
+						<button @click="registerFacility()">Register</button>
+					</form>
+				</section>
+			</section>
+		</div>
+
+
+    <!-- user screen on login -->
+    <div class="user-screen" x-data="services">
+      <div class="service-info">
+        <div class="landing">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+        </div>
+        <div class="services" x-init="loadServices()">
+          <template x-for="service in serviceList">
+            <div class="service">
+              <div class="heading">
+                <h3 x-text="service.name"></h3>
+              </div>
+              <div class="description">
+                <p x-text="service.description"></p>
+                <div class="button">
+                  <button x-bind:value="service.serv_config_id" @click="getFacilities($event);">Get facilities</button>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <button class="add-booking">+ Booking</button>
+        <section class="booking-header">
+          <p>Here are your upcoming bookings</p>
+          <hr>
+        </section>
+        <section class="bookings">
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="facility-name">Click Pharmacy, Melville</h3>
+              <p class="address">45 7th Avenue, Melville</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="booking-status">
+              <i class="fa fa-clock-o"></i>
+              <p class="status">Pending</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+
+    <!-- facility-screen -->
+    <div class="facility-screen">
+      <div class="dashboard">
+        <div class="landing">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+        </div>
+        <hr class="facility-divider">
+        <div class="overview">
+          <div class="overview-content">
+            <div class="upcoming-week">
+              <h3 class="overview-heading">Upcoming week</h3>
+              <div class="text">
+                <p class="info one">You have four outstanding bookings. Please confirm or reject as soon as possible</p>
+                <p class="info two">Please keep the information about services offered updated</p>
+              </div>              
+            </div>
+            <div class="monthly-stats">
+              <h3 class="overview-heading">Service distribution</h3>
+              <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <button class="add-booking">Manage Bookings</button>
+        <section class="booking-header">
+          <p>These are your upcoming bookings</p>
+          <hr>
+        </section>
+        <section class="bookings">
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+              <div class="status-buttons">
+                <button class="confirm-booking">Confirm</button>
+                <button class="reject-booking">Reject</button>
+              </div>
+          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="status-buttons">
+              <button class="confirm-booking">Confirm</button>
+              <button class="reject-booking">Reject</button>
+            </div>          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="status-buttons">
+              <button class="confirm-booking">Confirm</button>
+              <button class="reject-booking">Reject</button>
+            </div>          </div>
+          <div class="booking">
+            <div class="name-and-address">
+              <h3 class="customer-name">Zolani Sibisi</h3>
+              <p class="email-address">zolani@gmail.com</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-group">
+                <h5 class="date">Date</h5>
+                <p class="date">19-07-2022</p>
+              </div>
+              <div class="time-group">
+                <h5 class="time">Time</h5>
+                <p class="time">10:00</p>
+              </div>
+            </div>
+            <div class="status-buttons">
+              <button class="confirm-booking">Confirm</button>
+              <button class="reject-booking">Reject</button>
+            </div>          </div>
+        </section>
+      </div>
+    </div>
+    <script src="./chart.js"></script>
+		
+    <script src="https://use.fontawesome.com/7e5be8745d.js"></script>
+	</body>
+</html>
