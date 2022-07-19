@@ -5,12 +5,12 @@ export function Services(){
 		bookings: [],
 
         loadServices() {
-			fetch(`https://fema--app.herokuapp.com/fema/services`, {
+			fetch(`https://fema--app.herokuapp.com/fema/services`, 
+			{
 				method: "get",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				params: {id: 2}
 			})
 				.then((response) => response.json())
 				.then((res) => {

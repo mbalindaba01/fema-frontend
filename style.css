@@ -45,7 +45,7 @@ div.logo {
 
 
 .users {
-  display: none;
+  display: flex;
 }
 
 div.user-screen {
@@ -54,7 +54,7 @@ div.user-screen {
 }
 
 div.facility-screen {
-  display: none;
+  display: flex;
   background: #f6f6f4;
 }
 
