@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 		<title>Vite App</title>
+
+		
 	</head>
 
 	<body>
@@ -22,10 +24,34 @@
 		</header>
 		<!-- forms for user login and access -->
 		<div x-data="users" class="users">
-			<section class="user-access">
+			<!-- forms for user login and access -->
+		<div x-data="users">
+			<section class="user-access" x-show="showUserSec">
 				<section class="login" x-show="loggedIn">
-					<h3 class="access-heading">Login as individual</h3>
-					<div class="err" x-text="loginAuthError"></div>
+          <div class="contentBox">
+            <div class="formBox">
+                <h2 class="access-heading">Login as individual</h2>
+                <div class="err" x-text="loginAuthError"></div>
+
+                <form class="login-form">
+                    <div class="inputBx">
+                        <span>Email Adress</span> <input type="text" x-model="user.loginEmail" name="name" id="name" required>
+                    </div>
+                    <div class="inputBx">
+                        <span> Password</span> <input type="password" x-model="user.loginPassword" name="password" id="password" required>
+                    </div>
+                    <div class="remeber">
+                        <label><input type="checkbox" name="" id=""> Remember me</label>
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" value="Login" <button @click="login()">Login</button>>
+                    </div>
+                    <p>Don't have an account? <a href="#" @click="signedUp=!signedUp">Register</a></p>
+                </form>
+
+            </div>
+          </div>
+					<!-- <h3 class="access-heading">Login as individual</h3>  <div class="err" x-text="loginAuthError"></div>
 					<form class="login-form">
 						<input
 							type="text"
@@ -42,9 +68,45 @@
 							Don't have an account?
 							<a href="#" @click="signedUp=!signedUp">Register</a>
 						</p>
-					</form>
+					</form> -->
 				</section>
-				<section class="register" x-show="!signedUp">
+
+        <section class="register" x-show="!signedUp">
+          <div class="contentBox">
+              <div class="formBox">
+                  <h2 class="access-heading">Register as individual</h2>
+                  <div class="err" x-text="signUpAuthError"></div>
+                  <form class="reg-form">
+                      <div class="inputBx">
+                          <span>Username</span> <input type="text" x-model="user.name" name="name" id="name" required>
+                      </div>
+                      <div class="inputBx">
+                        <span>Email Adress</span> <input type="text" x-model="user.email" name="name" id="name" required>
+                    </div>
+                      <div class="inputBx">
+                          <span> Password</span> <input type="password" x-model="user.password" name="password" id="password" required>
+                      </div>
+                      <div class="inputBx">
+                          <span> Confirm password</span> <input type="password" name="password2" id="password2" required>
+                      </div>
+                      <div class="remeber">
+                          <label><input type="checkbox" name="" id=""> Remember me</label>
+                      </div>
+                      <div class="inputBx">
+                          <input type="submit" value="Register" <button @click="register()">Register</button>>
+                      </div>
+                      <p>Already registered? Login here? <a href="#" @click="signedUp=!signedUp">Register</a></p>
+                      <p>
+                        Login Or Register A Facility
+                        <a href="#" @click="showFacSec=!showFacSec, showUserSec = false"
+                          >Here</a
+                        >
+                      </p>
+                  </form>
+              </div>
+          </div>  
+        </section>
+				<!-- <section class="register" x-show="!signedUp">
 					<h3 class="access-heading">Register as individual</h3>
 					<div class="err" x-text="signUpAuthError"></div>
 					<form class="reg-form">
@@ -63,28 +125,58 @@
 							x-model="user.password"
 							placeholder="Please enter password"
 						/>
-						<button @click="register">Register</button>
+						<button @click="register()">Register</button>
 					</form>
-				</section>
-				<p>
+				</section> -->
+				<!-- <p>
 					Login Or Register A Facility
-					<a href="#" @click="showFacSec=!showFacSec">Here</a>
-				</p>
+					<a href="#" @click="showFacSec=!showFacSec, showUserSec = false"
+						>Here</a
+					>
+				</p> -->
 			</section>
 
 			<!-- forms for facility login and register -->
 			<section class="facility-access" x-show="!showFacSec">
-				<section class="login" x-show="facilityLoggedIn">
+
+        <section class="login" x-show="facilityLoggedIn">
+          <div class="err" x-text="logFacAuthError"></div>
+          <div class="contentBox">
+              <div class="formBox">
+                  <h2 class="access-heading">Login as an organisation</h2>
+                  <form class="login-form">
+                      <div class="inputBx">
+                          <span>Email Adress</span> <input type="text" x-model="facility.logFacEmail" name="name" id="name" required>
+                      </div>
+                      <div class="inputBx">
+                          <span> Password</span> <input type="password" x-model="facility.logFacPassword" name="password" id="password" required>
+                      </div>
+                      <div class="remeber">
+                          <label><input type="checkbox" name="" id=""> Remember me</label>
+                      </div>
+                      <div class="inputBx">
+                          <input type="submit" value="Login" <button @click="loginFacility()">Login</button>>
+                      </div>
+                      <p>Don't have an account? <a href="#" @click="facilitySignedUp=!facilitySignedUp"
+                        >Register</a></p>
+                      
+                      <p>Login Or Register As individual<a href="#" @click="showFacSec = true, showUserSec = true">Here</a></p>
+                  </form>
+              </div>
+          </div>
+        </section>
+				<!-- <section class="login" x-show="facilityLoggedIn">
+					<div class="err" x-text="logFacAuthError"></div>
 					<h3 class="access-heading">Login as an organisation</h3>
 					<form class="login-form">
 						<input
 							type="text"
-							x-model="facility.facEmail"
+							x-model="facility.logFacEmail"
 							placeholder="Please enter email"
 						/>
 						<input
 							type="password"
-							x-model="facility.facPassword"
+							x-model="facility.logFacPassword"
 							placeholder="Please enter password"
 						/>
 						<button @click="loginFacility()">Login</button>
@@ -95,8 +187,62 @@
 							>
 						</p>
 					</form>
-				</section>
-				<section class="register" x-show="!facilitySignedUp">
+				</section> -->
+
+        <section class="register" x-show="!facilitySignedUp">
+          <div class="err" x-text="facAuthError"></div>
+          <div class="contentBox">
+              <div class="formBox">
+                  <h2 class="access-heading">Register as organisation</h2>
+                  <form class="reg-form">
+                      <div class="inputBx">
+                          <span>Name of organisation/ company</span> <input type="text" x-model="facility.facName" name="name" id="name" required>
+                      </div>
+                      <div class="inputBx">
+                        <span>Email Adress</span> <input type="text" x-model="facility.facEmail" name="name" id="name" required>
+                      </div>
+                      <div class="inputBx">
+                        <span>Contact number</span> <input type="number" x-model="facility.contactno" id="contactno" name="name" required>
+                      </div>
+                      <div class="inputBx">
+                        <span>Location</span> <input type="text" x-model="facility.location" id="location" name="name" required>
+                      </div>
+                      <div class="inputBx">
+                        <span>Organisation registration code</span> <input type="text" x-model="facility.reg"
+                        id="reg" name="name" required>
+                      </div>
+                      <div class="inputBx">
+                        <span>Number of people you are able to see in a day</span> <input type="number" x-model="facility.capacity" id="capacity" name="name" required>
+                      </div>
+                      <div class="inputBx">
+                          <span> Password</span> <input type="password" x-model="facility.facPassword" name="password" id="password" required>
+                      </div>
+                      <div class="inputBx">
+                          <span> Confirm password</span> <input type="password" name="password2" id="password2" required>
+                      </div>
+                      <select x-model="chooseService" name="services" id="services">
+                        <option disabled>Select Service Offered</option>
+                        <option value="1">Pregnancy termination</option>
+                        <option value="2">Contraception</option>
+                        <option value="3">Ante-natal Care</option>
+                      </select>
+
+                      <div class="remeber">
+                          <label><input type="checkbox" name="" id=""> Remember me</label>
+                      </div>
+                      <div class="inputBx">
+                          <input type="submit" value="Register" <button @click="registerFacility()">Register</button>>
+                      </div>
+                      <p>Already registered? Login here? <a href="#" @click="facilitySignedUp=!facilitySignedUp">Register</a></p>
+
+                      <p>Login Or Register As individual <a href="#" @click="showFacSec = true, showUserSec = true">Here</a></p>   
+                  </form>
+              </div>
+          </div>  
+        </section>
+
+				<!-- <section class="register" x-show="!facilitySignedUp">
+					<div class="err" x-text="facAuthError"></div>
 					<h3 class="access-heading">Register as organisation</h3>
 					<form class="reg-form">
 						<input
@@ -106,7 +252,7 @@
 						/>
 						<input
 							type="text"
-							x-model="facility.regFacEmail"
+							x-model="facility.facEmail"
 							placeholder="Email"
 						/>
 						<input
@@ -135,18 +281,26 @@
 						/>
 						<input
 							type="password"
-							x-model="facility.regFacPassword"
+							x-model="facility.facPassword"
 							placeholder="Please enter password"
 						/>
-						<select name="services" id="services">
-							<option value="Pregnancy termination"></option>
-							<option value="Contraception"></option>
-							<option value="Ante-natal Care"></option>
+						<select x-model="chooseService" name="services" id="services">
+							<option disabled>Select Service Offered</option>
+							<option value="1">Pregnancy termination</option>
+							<option value="2">Contraception</option>
+							<option value="3">Ante-natal Care</option>
 						</select>
 						<button @click="registerFacility()">Register</button>
 					</form>
-				</section>
+				</section> -->
+				<!-- <p>
+					Login Or Register As individual
+					<a href="#" @click="showFacSec = true, showUserSec = true"
+						>Here</a
+					>
+				</p> -->
 			</section>
+		</div>
 		</div>
 
 
