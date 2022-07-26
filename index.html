@@ -44,7 +44,7 @@
                 <button type="button" @click="login()">Login</button>
                 <p class="no-account">
                   Don't have an account?
-                  <a href="#" @click="signedUp=!signedUp">Register</a>
+                  <a href="#" @click="signedUp=!signedUp, loggedIn=false">Register</a>
                 </p>
               </form>
             </div>
@@ -75,7 +75,7 @@
     
                 <p class="no-account">
                   Login Or Register A Facility
-                  <a href="#" @click="showFacSec=!showFacSec"
+                  <a href="#" @click="showFacSec=!showFacSec, signedUp=false, loggedIn=false"
                     >Here</a
                   >
                 </p>
