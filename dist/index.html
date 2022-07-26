@@ -6,8 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 		<title>Vite App</title>
-		<script type="module" crossorigin src="/fema-frontend/assets/index.c23234b0.js"></script>
-		<link rel="stylesheet" href="/fema-frontend/assets/index.aebd9d71.css">
+
+		
+		<script type="module" crossorigin src="/fema-frontend/assets/index.8d714925.js"></script>
+		<link rel="stylesheet" href="/fema-frontend/assets/index.a127cdcc.css">
 	</head>
 
 	<body>
@@ -24,9 +26,9 @@
 		</header>
 		<!-- forms for user login and access -->
 		<div x-data="users" class="users">
-			<section class="user-access">
+			<section class="user-access" x-show="userAccess">
 				<section class="login" x-show="loggedIn">
-					<h3 class="access-heading">Login as individual</h3>
+					<h3 class="access-heading">Login As Individual</h3>
 					<div class="err" x-text="loginAuthError"></div>
 					<form class="login-form">
 						<input
@@ -47,7 +49,7 @@
 					</form>
 				</section>
 				<section class="register" x-show="!signedUp">
-					<h3 class="access-heading">Register as individual</h3>
+					<h3 class="access-heading">Register As Individual</h3>
 					<div class="err" x-text="signUpAuthError"></div>
 					<form class="reg-form">
 						<input
@@ -65,28 +67,31 @@
 							x-model="user.password"
 							placeholder="Please enter password"
 						/>
-						<button @click="register">Register</button>
+						<button @click="register()">Register</button>
 					</form>
 				</section>
 				<p>
 					Login Or Register A Facility
-					<a href="#" @click="showFacSec=!showFacSec">Here</a>
+					<a href="#" @click="showFacSec=!showFacSec"
+						>Here</a
+					>
 				</p>
 			</section>
 
 			<!-- forms for facility login and register -->
 			<section class="facility-access" x-show="!showFacSec">
 				<section class="login" x-show="facilityLoggedIn">
-					<h3 class="access-heading">Login as an organisation</h3>
+					<div class="err" x-text="logFacAuthError"></div>
+					<h3 class="access-heading">Login As An organisation</h3>
 					<form class="login-form">
 						<input
 							type="text"
-							x-model="facility.facEmail"
+							x-model="facility.logFacEmail"
 							placeholder="Please enter email"
 						/>
 						<input
 							type="password"
-							x-model="facility.facPassword"
+							x-model="facility.logFacPassword"
 							placeholder="Please enter password"
 						/>
 						<button @click="loginFacility()">Login</button>
@@ -99,7 +104,8 @@
 					</form>
 				</section>
 				<section class="register" x-show="!facilitySignedUp">
-					<h3 class="access-heading">Register as organisation</h3>
+					<div class="err" x-text="facAuthError"></div>
+					<h3 class="access-heading">Register An Organisation</h3>
 					<form class="reg-form">
 						<input
 							type="text"
@@ -108,7 +114,7 @@
 						/>
 						<input
 							type="text"
-							x-model="facility.regFacEmail"
+							x-model="facility.facEmail"
 							placeholder="Email"
 						/>
 						<input
@@ -137,23 +143,34 @@
 						/>
 						<input
 							type="password"
-							x-model="facility.regFacPassword"
+							x-model="facility.facPassword"
 							placeholder="Please enter password"
 						/>
-						<select name="services" id="services">
-							<option value="Pregnancy termination"></option>
-							<option value="Contraception"></option>
-							<option value="Ante-natal Care"></option>
-						</select>
+						<p>Choose Service Offered</p>
+						<input type="checkbox" id="PregnancyTermination" x-model="facility.pregnancyTermination" value="1">
+						<label for="chooseService"> Pregnancy termination</label>
+
+						<input type="checkbox" id="Contraception" x-model="facility.contraception" value="2">
+						<label for="chooseService"> Contraception</label>
+
+						<input type="checkbox" id="AnteNatalCare" x-model="facility.anteNatalCare" value="3">
+						<label for="chooseService"> Ante-natal Care</label>
+						<br>
+						<br>
 						<button @click="registerFacility()">Register</button>
 					</form>
 				</section>
+				<!-- <p>
+					Login Or Register As individual
+					<a href="#" @click="showFacSec = true, showUserSec = true"
+						>Here</a
+					>
+				</p> -->
 			</section>
-		</div>
 
 
     <!-- user screen on login -->
-    <div class="user-screen" x-data="services">
+    <div class="user-screen" x-data="services" x-show="showUserScreen">
       <div class="service-info">
         <div class="landing">
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
@@ -268,7 +285,7 @@
 
 
     <!-- facility-screen -->
-    <div class="facility-screen">
+    <div class="facility-screen" x-show="showFacilityScreen">
       <div class="dashboard">
         <div class="landing">
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
@@ -378,6 +395,8 @@
         </section>
       </div>
     </div>
+		</div>
+
     <script src="./chart.js"></script>
 		
     <script src="https://use.fontawesome.com/7e5be8745d.js"></script>
