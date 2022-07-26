@@ -75,8 +75,7 @@
     
                 <p class="no-account">
                   Login Or Register A Facility
-                  <a href="#" @click="showFacSec=!showFacSec, signedUp=false, loggedIn=false"
-                    >Here</a
+                  <a href="#" @click="showFacSec=!showFacSec, userAccess=false">Here</a
                   >
                 </p>
               </form>
@@ -107,7 +106,7 @@
                 <button type="button" @click="loginFacility()">Login</button>
                 <p class="no-account">
                   No Account?
-                  <a href="#" @click="facilitySignedUp=!facilitySignedUp"
+                  <a href="#" @click="facilitySignedUp=!facilitySignedUp, facilityLoggedIn=false"
                     >Register</a
                   >
                 </p>
@@ -176,12 +175,12 @@
             </div>
           </div>
 				</section>
-				<!-- <p>
+				<p>
 					Login Or Register As individual
 					<a href="#" @click="showFacSec = true, showUserSec = true"
 						>Here</a
 					>
-				</p> -->
+				</p>
 			</section>
 
 
