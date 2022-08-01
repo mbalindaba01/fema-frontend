@@ -75,21 +75,22 @@ Alpine.data("users", () => {
 		},
 
 		register() {
+			console.log(this.user);
 			axios
 				.post(`https://fema--app.herokuapp.com/fema/register`, {
-
 					password: this.user.password,
 					email: this.user.email,
 					full_name: this.user.name,
-
 				})
 				.then(() => {
 					this.signUpAuthError = "New user created! Please login";
 
 					setTimeout(() => {
 						this.signUpAuthError = "";
-						this.signedUp = true;
 					}, 3000);
+					this.user.password="";
+					this.user.email="";
+					this.user.name="";
 				})
 				.catch((error) => {
 					alert(error);
@@ -107,11 +108,18 @@ Alpine.data("users", () => {
 					password: this.facility.facPassword,
 				})
 				.then(() => {
-					this.facAuthError = "Facility Registered!";
+					this.facAuthError = "Facility Registered! Please Login";
 
 					setTimeout(() => {
 						this.facAuthError = "";
 					}, 3000);
+					this.facility.facName="";
+					this.facility.location="";
+					this.facility.reg="";
+					this.facility.capacity="";
+					this.facility.contactno="";
+					this.facility.facEmail="";
+					this.facility.facPassword="";
 				})
 				.catch((error) => {
 					alert(error);
@@ -131,7 +139,7 @@ Alpine.data("users", () => {
 					setTimeout(() => {
 						this.logFacAuthError = "";
 						this.userAccess = false;
-						this.showFacSec=true;
+						this.showFacSec = true;
 						this.showFacilityScreen = true;
 					}, 2000);
 					this.facility.logFacEmail = "";
@@ -142,6 +150,16 @@ Alpine.data("users", () => {
 					this.logFacAuthError = "Invalid email or password";
 				});
 		},
+		logoutUser(){
+			localStorage.removeItem("token");
+			this.showUserScreen = false;
+			this.userAccess = true;
+		},
+		logoutFacility(){
+			localStorage.removeItem("token");
+			this.showFacilityScreen=false;
+			this.showFacSec = false;
+		}
 	};
 });
 

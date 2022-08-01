@@ -1,367 +1,380 @@
-@import url('https://fonts.googleapis.com/css?family=Karla|Quicksand');
-@import url('https://fonts.googleapis.com/css?family=Lobster|Quicksand');
-
+@import url("https://fonts.googleapis.com/css?family=Karla|Quicksand");
+@import url("https://fonts.googleapis.com/css?family=Lobster|Quicksand");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: 'Karla', sans-serif;
-  padding: 20px;
-  color: #1E3E48;
+	font-family: "Karla", sans-serif;
+	padding: 20px;
+	color: #1e3e48;
 }
 
 header {
-  height: 10vh;
-  width: 100;
-  display: flex;
-  align-items: center;
-  font-family: 'Lobster', sans-serif;
+	height: 10vh;
+	width: 100;
+	display: flex;
+	align-items: center;
+	font-family: "Lobster", sans-serif;
 }
 
 nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }
 
 div.nav-icons {
-  display: flex;
-  align-items: center;
-  width: 60px;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	width: 60px;
+	justify-content: space-between;
 }
 
 div.logo {
-  font-size: 1.5em;
+	font-size: 1.5em;
 }
 
-.err{
-  color: orangered;
+.err {
+	color: greenyellow;
 }
-
+.userLogoutBtn, .facilityLogoutBtn {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background: #3ab795;
+	border: none;
+	border-radius: 10px;
+	width: 170px;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: .5rem;
+	align-self: center;
+}
 
 .users {
-  display: flex;
+	display: flex;
 }
 
 div.user-screen {
-  display: flex;
-  background: #f6f6f4;
+	display: flex;
+	background: #f6f6f4;
 }
 
 div.facility-screen {
-  display: flex;
-  background: #f6f6f4;
+	display: flex;
+	background: #f6f6f4;
 }
 
 div.landing {
-  height: 200px;
-  display: flex;
-  align-items: center;
+	height: 200px;
+	display: flex;
+	align-items: center;
 }
 
 div.landing p {
-  font-size: 2em;
+	font-size: 2em;
 }
 
-div.service-info, div.dashboard {
-  width: 100%;
-  padding: 10px;
+div.service-info,
+div.dashboard {
+	width: 100%;
+	padding: 10px;
 }
 
 div.services {
-  display: flex;
+	display: flex;
 }
 
 div.service {
-  margin: 0 10px;
-  border-radius: 10px;
-  width: 200px;
-  height: 250px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin: 0 10px;
+	border-radius: 10px;
+	width: 200px;
+	height: 250px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-div.service div.heading, h3.overview-heading {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  background: url(./images/hd-wallpaper-6047465_640.jpg);
-  justify-content: center;
-  border-radius: 10px 10px 0 0;
-  color: #eee;
+div.service div.heading,
+h3.overview-heading {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	background: url(./images/hd-wallpaper-6047465_640.jpg);
+	justify-content: center;
+	border-radius: 10px 10px 0 0;
+	color: #eee;
 }
 
 div.description {
-  padding: 10px;
+	padding: 10px;
 }
 
 div.button {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 
 div.button button {
-  height: 40px;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  color: #eee;
-  background: url(./images/colorful-2174045_640.png);
+	height: 40px;
+	padding: 10px;
+	border-radius: 10px;
+	border: none;
+	outline: none;
+	color: #eee;
+	background: url(./images/colorful-2174045_640.png);
 }
 .booking-section {
-  height: 500px;
-  border-radius: 5px;
-  min-height: 80vh;
-  position: relative;
-  background: #1E3E48;
+	height: 500px;
+	border-radius: 5px;
+	min-height: 80vh;
+	position: relative;
+	background: #1e3e48;
 }
 
 button.add-booking {
-  background: url(./images/colorful-2174045_640.png);
-  position: absolute;
-  top: 20px; 
-  right: 20px;
-  color: #eee;
-  border: none;
-  outline: none;
-  height: 30px;
-  padding: 10px;
-  line-height: 10px;
-  border-radius: 10px;
+	background: url(./images/colorful-2174045_640.png);
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	color: #eee;
+	border: none;
+	outline: none;
+	height: 30px;
+	padding: 10px;
+	line-height: 10px;
+	border-radius: 10px;
 }
 
 section.booking-header {
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 30px;
-  color: #eee;
+	height: 80px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 30px;
+	color: #eee;
 }
 
 hr {
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,.25);
-  position: absolute;
-  top: 70px;
-  width: 250px;
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	position: absolute;
+	top: 70px;
+	width: 250px;
 }
 
 hr.facility-divider {
-  border-bottom: 1px solid #1E3E48;
-  position: relative;
-  top: 0;
-  width: 95%;
-  /* border-bottom: 1px solid rgba(255,255,255,.25); */
+	border-bottom: 1px solid #1e3e48;
+	position: relative;
+	top: 0;
+	width: 95%;
+	/* border-bottom: 1px solid rgba(255,255,255,.25); */
 }
 
 div.overview {
-  display: flex;
-  width: 100%;
+	display: flex;
+	width: 100%;
 }
 
 div.overview-content {
-  width: 100%;
-  display: flex;
-  height: 300px;
-  justify-content: space-evenly;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	height: 300px;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 div.overview-content > * {
-  width: 45%;
-  height: 80%;
-  min-width: 250px;
-  min-height: 250px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 45%;
+	height: 80%;
+	min-width: 250px;
+	min-height: 250px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 div.text {
-  height: 100%;
-  max-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+	height: 100%;
+	max-height: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 p.info {
-  height: 70px;
-  display: block;
-  width: 250px;
-  background: url(./images/colorful-2174045_640.png);
-  color: #f6f6f4;
-  border-radius: 5px;
-  padding: 5px;
-  text-align: center;
+	height: 70px;
+	display: block;
+	width: 250px;
+	background: url(./images/colorful-2174045_640.png);
+	color: #f6f6f4;
+	border-radius: 5px;
+	padding: 5px;
+	text-align: center;
 }
 
 canvas {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
 section.bookings {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
 }
 
 div.booking {
-  border-radius: 10px;
-  padding: 5px;
-  height: 120px;
-  width: 200px;
-  margin: 10px;
-  background: white;
+	border-radius: 10px;
+	padding: 5px;
+	height: 120px;
+	width: 200px;
+	margin: 10px;
+	background: white;
 }
 
-button, div.nav-icons i {
-  cursor: pointer;
+button,
+div.nav-icons i {
+	cursor: pointer;
 }
 
 div.name-and-address {
-  border-left: 3px solid crimson;
-  padding-left: 5px;
+	border-left: 3px solid crimson;
+	padding-left: 5px;
 }
 
 h3.facility-name {
-  font-size: 1em;
+	font-size: 1em;
 }
 
-p.address, p.email-address {
-  font-size: 0.8em;
+p.address,
+p.email-address {
+	font-size: 0.8em;
 }
 
 h5.date {
-  font-size: 0.8em;
+	font-size: 0.8em;
 }
 
 p.date {
-  font-size: 0.8em;
+	font-size: 0.8em;
 }
 
 div.date-and-time {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 30px 0px 10px;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 30px 0px 10px;
 }
 
 div.booking-status {
-  width: 70px;
-  display: flex;
-  padding: 5px;
-  background: orange;
-  border-radius: 10px;
-  font-size: 0.8em;
-  margin-left: 10px;
-  justify-content: space-between;
+	width: 70px;
+	display: flex;
+	padding: 5px;
+	background: orange;
+	border-radius: 10px;
+	font-size: 0.8em;
+	margin-left: 10px;
+	justify-content: space-between;
 }
 
-button.confirm-booking, button.reject-booking {
-  height: 25px;
-  border-radius: 10px;
-  width: 80px;
-  border: none;
-  color: #eee;
+button.confirm-booking,
+button.reject-booking {
+	height: 25px;
+	border-radius: 10px;
+	width: 80px;
+	border: none;
+	color: #eee;
 }
 
 button.confirm-booking {
-  background: #3AB795;
+	background: #3ab795;
 }
 
 button.reject-booking {
-  background: #C1292E;
+	background: #c1292e;
 }
 
 .status-buttons {
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-  align-items: center;
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 10px;
+	align-items: center;
 }
 
 /* login form */
 
 .contentBox {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
 }
 .formBox {
-  background: #1E3E48;
-  height: 75vh;
-  width: 40vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	background: #1e3e48;
+	height: 75vh;
+	width: 40vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .access-heading {
-  height: 10vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #eee;
-  text-decoration: underline;
+	height: 10vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #eee;
+	text-decoration: underline;
 }
 
 form {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
-input, button[type="button"] {
-  width: 400px;
-  height: 10vh;
-  text-align: center;
-  background: none;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid black;
-  font-size: 1.2em;
-  color: #eee;
+input,
+button[type="button"] {
+	width: 400px;
+	height: 10vh;
+	text-align: center;
+	background: none;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid black;
+	font-size: 1.2em;
+	color: #eee;
 }
 
-button[type="button"]{
-  background: #3AB795;
-  border: none;
-  border-radius: 10px;
-  width: 300px;
-  align-self: center;
+button[type="button"] {
+	background: #3ab795;
+	border: none;
+	border-radius: 10px;
+	width: 300px;
+	align-self: center;
 }
 
 ::placeholder {
-  color: #aaa;
-  font-weight: 100;
-  letter-spacing: 1px;
+	color: #aaa;
+	font-weight: 100;
+	letter-spacing: 1px;
 }
 
 p.no-account {
-  color: #eee;
+	color: #eee;
 }
 
 p.no-account a {
-  color: #3AB795;
+	color: #3ab795;
 }
 
 .fac {
-  height: 85vh;
+	height: 85vh;
 }
 
-form.fac-reg-form input{
-  height: 5vh;
+form.fac-reg-form input {
+	height: 5vh;
 }
-
-
-
-
