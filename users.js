@@ -3,6 +3,7 @@ export function Users() {
         init() {
 			localStorage.getItem("token");
 		},
+		service: [],
 		signUpAuthError: "",
 		loginAuthError: "",
 		loggedIn: true,

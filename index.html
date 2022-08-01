@@ -160,13 +160,13 @@
                   placeholder="Please enter password"
                 />
                 <p>Choose Service Offered</p>
-                <input type="checkbox" id="PregnancyTermination" x-model="facility.pregnancyTermination" value="1">
+                <input type="checkbox" id="PregnancyTermination" x-model="facility.service" value="1">
                 <label for="chooseService"> Pregnancy termination</label>
     
-                <input type="checkbox" id="Contraception" x-model="facility.contraception" value="2">
+                <input type="checkbox" id="Contraception" x-model="facility.service" value="3">
                 <label for="chooseService"> Contraception</label>
     
-                <input type="checkbox" id="AnteNatalCare" x-model="facility.anteNatalCare" value="3">
+                <input type="checkbox" id="AnteNatalCare" x-model="facility.service" value="4">
                 <label for="chooseService"> Ante-natal Care</label>
                 <br>
                 <br>
@@ -183,6 +183,7 @@
 				</p>
 			</section>
 
+      
 
     <!-- user screen on login -->
     <div class="user-screen" x-data="services" x-show="showUserScreen">
@@ -206,6 +207,24 @@
           </template>
         </div>
       </div>
+
+      <!-- form for making booking -->
+
+      <section class="user-access" x-show="makebooking">
+				<section class="login">
+					<div class="err" x-text="loginAuthError"></div>
+					<div class="contentBox">
+            <div class="formBox">
+              <h3 class="access-heading">Make booking</h3>
+              <form action="/action_page.php">
+                <label for="datetime">Pick a date and time</label>
+                <input type="datetime-local" id="datetime" name="datetime">
+                <input type="submit">
+              </form>
+            </div>
+          </div>
+			  </section>
+      </section>
 
       <div class="booking-section">
         <button class="add-booking">+ Booking</button>

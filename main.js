@@ -47,6 +47,7 @@ Alpine.data("users", () => {
 			anteNatalCare: "",
 			logFacPassword: "",
 			logFacEmail: "",
+			service: []
 		},
 
 		login() {
@@ -105,6 +106,7 @@ Alpine.data("users", () => {
 					contactno: this.facility.contactno,
 					email: this.facility.facEmail,
 					password: this.facility.facPassword,
+					services: this.facility.service
 				})
 				.then(() => {
 					this.facAuthError = "Facility Registered!";
@@ -112,6 +114,7 @@ Alpine.data("users", () => {
 					setTimeout(() => {
 						this.facAuthError = "";
 					}, 3000);
+					console.log(this.facility.service)
 				})
 				.catch((error) => {
 					alert(error);
