@@ -25,38 +25,6 @@
 			<section class="user-access" x-show="userAccess">
 				<section class="login" x-show="loggedIn">
 					<div class="contentBox">
-<<<<<<< HEAD
-						<div class="formBox">
-							<div class="err" x-text="loginAuthError"></div>
-							<h3 class="access-heading">Login As Individual</h3>
-							<form class="login-form">
-								<input
-									type="text"
-									x-model="user.loginEmail"
-									placeholder="Please enter email"
-								/>
-								<input
-									type="password"
-									x-model="user.loginPassword"
-									placeholder="Please enter password"
-								/>
-								<button type="button" @click="login()">Login</button>
-								<p class="no-account">
-									Don't have an account?
-									<a href="#" @click="signedUp=!signedUp, loggedIn=false"
-										>Register</a
-									>
-								</p>
-								<p class="no-account">
-									Or Login Or Register A Facility
-									<a href="#" @click="showFacSec=!showFacSec, userAccess=false"
-										>Here</a
-									>
-								</p>
-							</form>
-						</div>
-					</div>
-=======
             <div class="formBox">
               <h3 class="access-heading">Login As Individual</h3>
               <form class="login-form">
@@ -78,7 +46,6 @@
               </form>
             </div>
           </div>
->>>>>>> e67962be4814d50c8b81fc544102c18e4fc83dcf
 				</section>
 				<section class="register" x-show="!signedUp">
 					<div class="contentBox">
@@ -486,7 +453,6 @@
 				</button>
 			</div>
 		</div>
-
 		<script src="./chart.js"></script>
 		<script type="module" src="/main.js"></script>
 		<script src="https://use.fontawesome.com/7e5be8745d.js"></script>
