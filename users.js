@@ -47,7 +47,6 @@ export function Users() {
 						localStorage.setItem("token", token);
 						if (localStorage.getItem("token")) {
 							this.loadServices();
-							console.log(this.movies);
 						}
 					})
 					.then(() => {

@@ -14,7 +14,14 @@ Alpine.data("users", () => {
 		init() {
 			localStorage.getItem("token");
 		},
+		serviceList: [],
+		isbooking: false,
+		showAllElems: true,
+		bookingSuccess: "",
+		chosenService: "",
 		signUpAuthError: "",
+		currentUser : "",
+		currentFacility: "",
 		loginAuthError: "",
 		facAuthError: "",
 		logFacAuthError: "",
@@ -27,6 +34,9 @@ Alpine.data("users", () => {
 		userAccess: true,
 		showFacSec: true,
 		showUserSec: true,
+		bookingDate: "",
+		bookingTime: "",
+
 		user: {
 			loginPassword: "",
 			loginEmail: "",
@@ -47,7 +57,6 @@ Alpine.data("users", () => {
 			anteNatalCare: "",
 			logFacPassword: "",
 			logFacEmail: "",
-			service: []
 		},
 
 		login() {
@@ -66,13 +75,23 @@ Alpine.data("users", () => {
 						this.userAccess = false;
 						this.showUserScreen = true;
 					}, 2000);
-					this.user.loginEmail = "";
-					this.user.loginPassword = "";
 				})
 				.catch((error) => {
 					console.log(error);
 					this.loginAuthError = "Invalid email or password";
+					this.user.loginEmail = "";
+					this.user.loginPassword = "";
 				});
+		},
+
+		makeBooking(){
+			this.isbooking = true
+			this.showAllElems = false
+		},
+
+		cancelBookingForm(){
+			this.isbooking = false
+			this.showAllElems = true
 		},
 
 		register() {
@@ -145,6 +164,66 @@ Alpine.data("users", () => {
 					this.logFacAuthError = "Invalid email or password";
 				});
 		},
+
+		getCurrentUser(){
+			this.currentUser = this.user.loginEmail
+			return this.currentUser
+		},
+
+		getCurrentFacility(e){
+			console.log(e.target.getAttribute('id'))
+			this.currentFacility = e.target.getAttribute('id')
+		},
+
+		getFacility(){
+			return this.currentFacility
+		},
+
+		getServiceId(){
+			return this.chosenService
+		},
+
+		saveBooking(){
+			axios
+				.post(`https://fema--app.herokuapp.com/fema/makebooking`, {
+					email: this.getCurrentUser(),
+					facilityName: this.getFacility(),
+					date: this.bookingDate,
+					time: this.bookingTime,
+					serviceId: this.getServiceId(),
+				})
+				.then(res => {
+					console.log(res)
+					console.log(this.getServiceId())
+					this.loginAuthError = 'Booking successful'
+					setTimeout(() => {
+						this.cancelBookingForm()
+					}, 2000);
+				})
+				.catch((error) => {
+					console.log(error);
+					this.logFacAuthError = "Something went wrong. Please try again";
+				});
+			// console.log(this.getFacility())
+			// console.log(this.getCurrentUser())
+			// console.log(this.bookingDate)
+			// console.log(this.bookingTime)
+			// console.log(this.chosenService)
+		},
+
+		getServices(){
+			let facility = this.getFacility()
+			axios
+				.get(`https://fema--app.herokuapp.com/fema/services/${facility}`)
+				.then(data => {
+					this.serviceList= data.data.data
+					console.log(this.serviceList)
+				})
+				.catch((error) => {
+					console.log(error);
+					this.logFacAuthError = "Invalid email or password";
+				});
+		}
 	};
 });
 
