@@ -4,196 +4,274 @@
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/fema-frontend/assets/favicon.63a26457.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 		<title>Vite App</title>
-
-		
-		<script type="module" crossorigin src="/fema-frontend/assets/index.8d714925.js"></script>
-		<link rel="stylesheet" href="/fema-frontend/assets/index.a127cdcc.css">
+		<script type="module" crossorigin src="/fema-frontend/assets/index.caf00ed1.js"></script>
+		<link rel="stylesheet" href="/fema-frontend/assets/index.d7c27fd3.css">
 	</head>
 
 	<body>
 		<header>
 			<nav>
-        <div class="logo">
-          <h1>Fema</h1>
-        </div>
-        <div class="nav-icons">
-          <i class="fa fa-lg fa-bell"></i>
-          <i class="fa fa-lg fa-sign-out"></i>
-        </div>
-      </nav>
+				<div class="logo">
+					<h1>Fema</h1>
+				</div>
+				<div class="nav-icons">
+					<i class="fa fa-lg fa-bell"></i>
+					<i class="fa fa-lg fa-sign-out"></i>
+				</div>
+			</nav>
 		</header>
 		<!-- forms for user login and access -->
 		<div x-data="users" class="users">
 			<section class="user-access" x-show="userAccess">
 				<section class="login" x-show="loggedIn">
-					<h3 class="access-heading">Login As Individual</h3>
-					<div class="err" x-text="loginAuthError"></div>
-					<form class="login-form">
-						<input
-							type="text"
-							x-model="user.loginEmail"
-							placeholder="Please enter email"
-						/>
-						<input
-							type="password"
-							x-model="user.loginPassword"
-							placeholder="Please enter password"
-						/>
-						<button @click="login()">Login</button>
-						<p>
-							Don't have an account?
-							<a href="#" @click="signedUp=!signedUp">Register</a>
-						</p>
-					</form>
+					<div class="contentBox">
+            <div class="formBox">
+              <h3 class="access-heading">Login As Individual</h3>
+              <form class="login-form">
+                <input
+                  type="text"
+                  x-model="user.loginEmail"
+                  placeholder="Please enter email"
+                />
+                <input
+                  type="password"
+                  x-model="user.loginPassword"
+                  placeholder="Please enter password"
+                />
+                <button type="button" @click="login();getCurrentUser()" value="user.loginEmail">Login</button>
+                <p class="no-account">
+                  Don't have an account?
+                  <a href="#" @click="signedUp=!signedUp, loggedIn=false">Register</a>
+                </p>
+              </form>
+            </div>
+          </div>
 				</section>
 				<section class="register" x-show="!signedUp">
-					<h3 class="access-heading">Register As Individual</h3>
-					<div class="err" x-text="signUpAuthError"></div>
-					<form class="reg-form">
-						<input
-							type="text"
-							x-model="user.name"
-							placeholder="Please enter full name"
-						/>
-						<input
-							type="text"
-							x-model="user.email"
-							placeholder="Please enter email"
-						/>
-						<input
-							type="password"
-							x-model="user.password"
-							placeholder="Please enter password"
-						/>
-						<button @click="register()">Register</button>
-					</form>
+					<div class="contentBox">
+						<div class="formBox">
+							<div class="err" x-text="signUpAuthError"></div>
+							<h3 class="access-heading">Register As Individual</h3>
+							<form class="reg-form">
+								<input
+									type="text"
+									x-model="user.name"
+									placeholder="Please enter full name"
+								/>
+								<input
+									type="text"
+									x-model="user.email"
+									placeholder="Please enter email"
+								/>
+								<input
+									type="password"
+									x-model="user.password"
+									placeholder="Please enter password"
+								/>
+								<button @click="register()">Register</button>
+								<p class="no-account">
+									<a href="#" @click="signedUp=!signedUp, loggedIn=true"
+										>Login</a
+									>
+								</p>
+								<p class="no-account">
+									Login Or Register A Facility
+									<a href="#" @click="showFacSec=!showFacSec, userAccess=false"
+										>Here</a
+									>
+								</p>
+							</form>
+						</div>
+					</div>
 				</section>
-				<p>
-					Login Or Register A Facility
-					<a href="#" @click="showFacSec=!showFacSec"
-						>Here</a
-					>
-				</p>
 			</section>
 
 			<!-- forms for facility login and register -->
 			<section class="facility-access" x-show="!showFacSec">
 				<section class="login" x-show="facilityLoggedIn">
-					<div class="err" x-text="logFacAuthError"></div>
-					<h3 class="access-heading">Login As An organisation</h3>
-					<form class="login-form">
-						<input
-							type="text"
-							x-model="facility.logFacEmail"
-							placeholder="Please enter email"
-						/>
-						<input
-							type="password"
-							x-model="facility.logFacPassword"
-							placeholder="Please enter password"
-						/>
-						<button @click="loginFacility()">Login</button>
-						<p>
-							No Account?
-							<a href="#" @click="facilitySignedUp=!facilitySignedUp"
-								>Register</a
-							>
-						</p>
-					</form>
+					<div class="contentBox">
+						<div class="formBox">
+							<div class="err" x-text="logFacAuthError"></div>
+
+							<h3 class="access-heading">Login As An organisation</h3>
+							<form class="login-form">
+								<input
+									type="text"
+									x-model="facility.logFacEmail"
+									placeholder="Please enter email"
+								/>
+								<input
+									type="password"
+									x-model="facility.logFacPassword"
+									placeholder="Please enter password"
+								/>
+								<button type="button" @click="loginFacility()">Login</button>
+								<p class="no-account">
+									No Account?
+									<a
+										href="#"
+										@click="facilitySignedUp=!facilitySignedUp, facilityLoggedIn=false"
+										>Register</a
+									>
+								</p>
+								<p class="no-account">
+									Login as Individual
+									<a href="#" @click="showFacSec=false, userAccess=true"
+										>Here</a
+									>
+								</p>
+							</form>
+						</div>
+					</div>
 				</section>
 				<section class="register" x-show="!facilitySignedUp">
-					<div class="err" x-text="facAuthError"></div>
-					<h3 class="access-heading">Register An Organisation</h3>
-					<form class="reg-form">
-						<input
-							type="text"
-							x-model="facility.facName"
-							placeholder="Name of organisation/company"
-						/>
-						<input
-							type="text"
-							x-model="facility.facEmail"
-							placeholder="Email"
-						/>
-						<input
-							type="text"
-							x-model="facility.contactno"
-							id="contactno"
-							placeholder="Contact number"
-						/>
-						<input
-							type="text"
-							x-model="facility.location"
-							id="location"
-							placeholder="Location"
-						/>
-						<input
-							type="text"
-							x-model="facility.reg"
-							id="reg"
-							placeholder="Organisation registration code"
-						/>
-						<input
-							type="text"
-							x-model="facility.capacity"
-							id="capacity"
-							placeholder="Number of people you are able to see in a day"
-						/>
-						<input
-							type="password"
-							x-model="facility.facPassword"
-							placeholder="Please enter password"
-						/>
-						<p>Choose Service Offered</p>
-						<input type="checkbox" id="PregnancyTermination" x-model="facility.pregnancyTermination" value="1">
-						<label for="chooseService"> Pregnancy termination</label>
+					<div class="contentBox">
+						<div class="formBox">
+							<div class="err" x-text="facAuthError"></div>
 
-						<input type="checkbox" id="Contraception" x-model="facility.contraception" value="2">
-						<label for="chooseService"> Contraception</label>
+							<h3 class="access-heading">Register An Organisation</h3>
+							<form class="reg-form">
+								<input
+									type="text"
+									x-model="facility.facName"
+									placeholder="Name of organisation/company"
+								/>
+								<input
+									type="text"
+									x-model="facility.facEmail"
+									placeholder="Email"
+								/>
+								<input
+									type="text"
+									x-model="facility.contactno"
+									id="contactno"
+									placeholder="Contact number"
+								/>
+								<input
+									type="text"
+									x-model="facility.location"
+									id="location"
+									placeholder="Location"
+								/>
+								<input
+									type="text"
+									x-model="facility.reg"
+									id="reg"
+									placeholder="Organisation registration code"
+								/>
+								<input
+									type="text"
+									x-model="facility.capacity"
+									id="capacity"
+									placeholder="Number of people you are able to see in a day"
+								/>
+								<input
+									type="password"
+									x-model="facility.facPassword"
+									placeholder="Please enter password"
+								/>
+								<h3 class="chooseService">Choose Service Offered</h3>
+								<input
+									type="checkbox"
+									id="PregnancyTermination"
+									x-model="facility.pregnancyTermination"
+									value="1"
+								/>
+								<label for="chooseService"> Pregnancy termination</label>
 
-						<input type="checkbox" id="AnteNatalCare" x-model="facility.anteNatalCare" value="3">
-						<label for="chooseService"> Ante-natal Care</label>
-						<br>
-						<br>
-						<button @click="registerFacility()">Register</button>
-					</form>
+								<input
+									type="checkbox"
+									id="Contraception"
+									x-model="facility.contraception"
+									value="2"
+								/>
+								<label for="chooseService"> Contraception</label>
+
+								<input
+									type="checkbox"
+									id="AnteNatalCare"
+									x-model="facility.anteNatalCare"
+									value="3"
+								/>
+								<label for="chooseService"> Ante-natal Care</label>
+								<br />
+								<br />
+								<button type="button" @click="registerFacility()">
+									Register
+								</button>
+								<p class="no-account">
+									<a href="#" @click="facilitySignedUp=!facilitySignedUp, facilityLoggedIn=true"
+										>Login</a
+									>
+								</p>
+								<p class="no-account">
+									Login as Individual
+									<a href="#" @click="showFacSec=false, userAccess=true"
+										>Here</a
+									>
+								</p>
+							</form>
+						</div>
+					</div>
 				</section>
-				<!-- <p>
-					Login Or Register As individual
-					<a href="#" @click="showFacSec = true, showUserSec = true"
-						>Here</a
-					>
-				</p> -->
 			</section>
 
+      
 
     <!-- user screen on login -->
-    <div class="user-screen" x-data="services" x-show="showUserScreen">
-      <div class="service-info">
-        <div class="landing">
+    <div class="user-screen" x-data="services">
+      <div class="service-info" x-show="showAllElems">
+        <div class="landing" x-show="showAllElems">
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
         </div>
-        <div class="services" x-init="loadServices()">
-          <template x-for="service in serviceList">
-            <div class="service">
+        <div class="facility-list" x-init="getFacilities()" x-show="showAllElems">
+          <template x-for="facility in facilities">
+            <div class="facility">
               <div class="heading">
-                <h3 x-text="service.name"></h3>
+                <h3 x-text="facility.facility_name"></h3>
               </div>
-              <div class="description">
-                <p x-text="service.description"></p>
-                <div class="button">
-                  <button x-bind:value="service.serv_config_id" @click="getFacilities($event);">Get facilities</button>
-                </div>
+              <div class="details">
+                <p x-text="facility.facility_location"></p>
+                <p x-text="facility.facility_contacno"></p>
+                <p x-text="facility.facility_email"></p>
+                <p x-text="facility.facility_reg"></p>
+                <button x-bind:id="facility.facility_name" class="add-booking two" @click="makeBooking(); getCurrentFacility($event);getServices()">Make booking</button>
               </div>
             </div>
           </template>
         </div>
       </div>
 
-      <div class="booking-section">
-        <button class="add-booking">+ Booking</button>
+      <!-- form for making booking -->
+
+      <section class="user-access" x-show="isbooking">
+				<section class="login">
+					<div class="err" x-text="loginAuthError"></div>
+					<div class="contentBox">
+            <div class="formBox">
+              <div class="cancel" @click="cancelBookingForm()">X</div>
+              <h3 class="access-heading">Make booking</h3>
+              <form>
+                <label for="services">Choose a service:</label>
+                <select id="facility-services" x-model="chosenService">
+                  <template x-for="service in serviceList">
+                    <option x-bind:value="service.serv_config_id" x-text="service.name"></option>
+                  </template>
+                </select>
+                <label for="birthday">Select a date: </label>
+                <input type="date" id="booking-date" name="booking-date" x-model="bookingDate">
+                <label for="appt">Select a time:</label>
+                <input type="time" id="booking-time" name="booking-time" x-model="bookingTime">
+                <button type="button" @click="saveBooking()">Submit</button>
+              </form>
+            </div>
+          </div>
+			  </section>
+      </section>
+
+      <div class="booking-section" x-show="showAllElems">
         <section class="booking-header">
           <p>Here are your upcoming bookings</p>
           <hr>
@@ -283,122 +361,102 @@
       </div>
     </div>
 
-
-    <!-- facility-screen -->
-    <div class="facility-screen" x-show="showFacilityScreen">
-      <div class="dashboard">
-        <div class="landing">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-        </div>
-        <hr class="facility-divider">
-        <div class="overview">
-          <div class="overview-content">
-            <div class="upcoming-week">
-              <h3 class="overview-heading">Upcoming week</h3>
-              <div class="text">
-                <p class="info one">You have four outstanding bookings. Please confirm or reject as soon as possible</p>
-                <p class="info two">Please keep the information about services offered updated</p>
-              </div>              
-            </div>
-            <div class="monthly-stats">
-              <h3 class="overview-heading">Service distribution</h3>
-              <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="booking-section">
-        <button class="add-booking">Manage Bookings</button>
-        <section class="booking-header">
-          <p>These are your upcoming bookings</p>
-          <hr>
-        </section>
-        <section class="bookings">
-          <div class="booking">
-            <div class="name-and-address">
-              <h3 class="customer-name">Zolani Sibisi</h3>
-              <p class="email-address">zolani@gmail.com</p>
-            </div>
-            <div class="date-and-time">
-              <div class="date-group">
-                <h5 class="date">Date</h5>
-                <p class="date">19-07-2022</p>
-              </div>
-              <div class="time-group">
-                <h5 class="time">Time</h5>
-                <p class="time">10:00</p>
-              </div>
-            </div>
-              <div class="status-buttons">
-                <button class="confirm-booking">Confirm</button>
-                <button class="reject-booking">Reject</button>
-              </div>
-          </div>
-          <div class="booking">
-            <div class="name-and-address">
-              <h3 class="customer-name">Zolani Sibisi</h3>
-              <p class="email-address">zolani@gmail.com</p>
-            </div>
-            <div class="date-and-time">
-              <div class="date-group">
-                <h5 class="date">Date</h5>
-                <p class="date">19-07-2022</p>
-              </div>
-              <div class="time-group">
-                <h5 class="time">Time</h5>
-                <p class="time">10:00</p>
-              </div>
-            </div>
-            <div class="status-buttons">
-              <button class="confirm-booking">Confirm</button>
-              <button class="reject-booking">Reject</button>
-            </div>          </div>
-          <div class="booking">
-            <div class="name-and-address">
-              <h3 class="customer-name">Zolani Sibisi</h3>
-              <p class="email-address">zolani@gmail.com</p>
-            </div>
-            <div class="date-and-time">
-              <div class="date-group">
-                <h5 class="date">Date</h5>
-                <p class="date">19-07-2022</p>
-              </div>
-              <div class="time-group">
-                <h5 class="time">Time</h5>
-                <p class="time">10:00</p>
-              </div>
-            </div>
-            <div class="status-buttons">
-              <button class="confirm-booking">Confirm</button>
-              <button class="reject-booking">Reject</button>
-            </div>          </div>
-          <div class="booking">
-            <div class="name-and-address">
-              <h3 class="customer-name">Zolani Sibisi</h3>
-              <p class="email-address">zolani@gmail.com</p>
-            </div>
-            <div class="date-and-time">
-              <div class="date-group">
-                <h5 class="date">Date</h5>
-                <p class="date">19-07-2022</p>
-              </div>
-              <div class="time-group">
-                <h5 class="time">Time</h5>
-                <p class="time">10:00</p>
-              </div>
-            </div>
-            <div class="status-buttons">
-              <button class="confirm-booking">Confirm</button>
-              <button class="reject-booking">Reject</button>
-            </div>          </div>
-        </section>
-      </div>
-    </div>
-		</div>
-
-    <script src="./chart.js"></script>
+				<div class="booking-section">
+					<button class="add-booking">Manage Bookings</button>
+					<section class="booking-header">
+						<p>These are your upcoming bookings</p>
+						<hr />
+					</section>
+					<section class="bookings">
+						<div class="booking">
+							<div class="name-and-address">
+								<h3 class="customer-name">Zolani Sibisi</h3>
+								<p class="email-address">zolani@gmail.com</p>
+							</div>
+							<div class="date-and-time">
+								<div class="date-group">
+									<h5 class="date">Date</h5>
+									<p class="date">19-07-2022</p>
+								</div>
+								<div class="time-group">
+									<h5 class="time">Time</h5>
+									<p class="time">10:00</p>
+								</div>
+							</div>
+							<div class="status-buttons">
+								<button class="confirm-booking">Confirm</button>
+								<button class="reject-booking">Reject</button>
+							</div>
+						</div>
+						<div class="booking">
+							<div class="name-and-address">
+								<h3 class="customer-name">Zolani Sibisi</h3>
+								<p class="email-address">zolani@gmail.com</p>
+							</div>
+							<div class="date-and-time">
+								<div class="date-group">
+									<h5 class="date">Date</h5>
+									<p class="date">19-07-2022</p>
+								</div>
+								<div class="time-group">
+									<h5 class="time">Time</h5>
+									<p class="time">10:00</p>
+								</div>
+							</div>
+							<div class="status-buttons">
+								<button class="confirm-booking">Confirm</button>
+								<button class="reject-booking">Reject</button>
+							</div>
+						</div>
+						<div class="booking">
+							<div class="name-and-address">
+								<h3 class="customer-name">Zolani Sibisi</h3>
+								<p class="email-address">zolani@gmail.com</p>
+							</div>
+							<div class="date-and-time">
+								<div class="date-group">
+									<h5 class="date">Date</h5>
+									<p class="date">19-07-2022</p>
+								</div>
+								<div class="time-group">
+									<h5 class="time">Time</h5>
+									<p class="time">10:00</p>
+								</div>
+							</div>
+							<div class="status-buttons">
+								<button class="confirm-booking">Confirm</button>
+								<button class="reject-booking">Reject</button>
+							</div>
+						</div>
+						<div class="booking">
+							<div class="name-and-address">
+								<h3 class="customer-name">Zolani Sibisi</h3>
+								<p class="email-address">zolani@gmail.com</p>
+							</div>
+							<div class="date-and-time">
+								<div class="date-group">
+									<h5 class="date">Date</h5>
+									<p class="date">19-07-2022</p>
+								</div>
+								<div class="time-group">
+									<h5 class="time">Time</h5>
+									<p class="time">10:00</p>
+								</div>
+							</div>
+							<div class="status-buttons">
+								<button class="confirm-booking">Confirm</button>
+								<button class="reject-booking">Reject</button>
+							</div>
+						</div>
+					</section>
+				</div>
+				<button class="facilityLogoutBtn" @click="logoutFacility">
+					Logout
+				</button>
+			</div>
+		<!-- </div> -->
+		<script src="./chart.js"></script>
 		
-    <script src="https://use.fontawesome.com/7e5be8745d.js"></script>
+		<script src="https://use.fontawesome.com/7e5be8745d.js"></script>
 	</body>
 </html>
