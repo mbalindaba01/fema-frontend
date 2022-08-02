@@ -41,6 +41,13 @@ div.logo {
 .err {
 	color: greenyellow;
 }
+label{
+  color: #fff;
+}
+.chooseService{
+  color: #fff;
+}
+
 .userLogoutBtn, .facilityLogoutBtn {
 	position: absolute;
 	right: 0;
@@ -311,8 +318,9 @@ button.reject-booking {
 }
 .formBox {
 	background: #1e3e48;
-	height: 75vh;
-	width: 40vw;
+	width: 40%;
+  height: 80vh;
+  padding: 3rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -355,6 +363,10 @@ button[type="button"] {
 	border-radius: 10px;
 	width: 300px;
 	align-self: center;
+}
+
+input[type="checkbox"] {
+  width: 5%;
 }
 
 ::placeholder {
