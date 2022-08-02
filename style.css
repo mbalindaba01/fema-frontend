@@ -133,11 +133,11 @@ div.button button {
 	background: url(./images/colorful-2174045_640.png);
 }
 .booking-section {
-	height: 500px;
-	border-radius: 5px;
-	min-height: 80vh;
-	position: relative;
-	background: #1e3e48;
+  height: 100%;
+  border-radius: 5px;
+  min-height: 80vh;
+  position: relative;
+  background: #1E3E48;
 }
 
 button.add-booking {
@@ -387,6 +387,21 @@ p.no-account a {
 	height: 85vh;
 }
 
-form.fac-reg-form input {
-	height: 5vh;
+form.fac-reg-form input{
+  height: 5vh;
 }
+
+button.add-booking.two {
+  position: relative;
+  margin-top: -200px;
+  margin-left: 20px;
+}
+
+.box {
+  height: 50px;
+  width: 50px;
+}
+
+
+
+

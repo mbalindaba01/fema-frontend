@@ -3,6 +3,7 @@ export function Users() {
         init() {
 			localStorage.getItem("token");
 		},
+		service: [],
 		signUpAuthError: "",
 		loginAuthError: "",
 		loggedIn: true,
@@ -46,7 +47,6 @@ export function Users() {
 						localStorage.setItem("token", token);
 						if (localStorage.getItem("token")) {
 							this.loadServices();
-							console.log(this.movies);
 						}
 					})
 					.then(() => {

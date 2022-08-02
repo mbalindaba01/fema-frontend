@@ -14,7 +14,14 @@ Alpine.data("users", () => {
 		init() {
 			localStorage.getItem("token");
 		},
+		serviceList: [],
+		isbooking: false,
+		showAllElems: true,
+		bookingSuccess: "",
+		chosenService: "",
 		signUpAuthError: "",
+		currentUser : "",
+		currentFacility: "",
 		loginAuthError: "",
 		facAuthError: "",
 		logFacAuthError: "",
@@ -27,6 +34,9 @@ Alpine.data("users", () => {
 		userAccess: true,
 		showFacSec: true,
 		showUserSec: true,
+		bookingDate: "",
+		bookingTime: "",
+
 		user: {
 			loginPassword: "",
 			loginEmail: "",
@@ -65,13 +75,23 @@ Alpine.data("users", () => {
 						this.userAccess = false;
 						this.showUserScreen = true;
 					}, 2000);
-					this.user.loginEmail = "";
-					this.user.loginPassword = "";
 				})
 				.catch((error) => {
 					console.log(error);
 					this.loginAuthError = "Invalid email or password";
+					this.user.loginEmail = "";
+					this.user.loginPassword = "";
 				});
+		},
+
+		makeBooking(){
+			this.isbooking = true
+			this.showAllElems = false
+		},
+
+		cancelBookingForm(){
+			this.isbooking = false
+			this.showAllElems = true
 		},
 
 		register() {
@@ -106,6 +126,7 @@ Alpine.data("users", () => {
 					contactno: this.facility.contactno,
 					email: this.facility.facEmail,
 					password: this.facility.facPassword,
+					services: this.facility.service
 				})
 				.then(() => {
 					this.facAuthError = "Facility Registered! Please Login";
